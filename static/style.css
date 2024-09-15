@@ -1,0 +1,221 @@
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.img-container {
+    position: relative;
+    width: 100%; /* Or a fixed width, if you want */
+    height: 250px; /* Set a fixed height for the image container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+}
+
+/* .loading-container {
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    transform: translate(-50px, -50px);
+    flex-direction: column;
+} */
+
+.loading-title {
+    font-size: 15px;
+    color: #726e6e;
+    top: 40px;
+    width: 281px;
+    position: absolute;
+}
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+    border: 0.4rem solid rgba(0, 0, 0, 0.1);
+    border-top-color: #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+.product-body {
+    height: 400px;
+    transition: .3s ease-in-out;
+}
+.product-body:hover {
+    box-shadow: 1px 5px 10px rgb(127, 171, 207);
+    transform: scale(1.04);
+}
+/* .product-body .img-container {
+    position: relative;
+    width: 100%;
+    height: 200px; 
+    overflow: hidden;
+    text-align: center;
+} */
+
+.img-container img {
+    height: 100%;
+    width: fit-content;
+    padding: 10px;
+    overflow: hidden;
+}
+
+
+.product-body .product-details {
+    height: 50%;
+    padding: 10px;
+    background-color: #cddadf8c;
+    position: relative;
+}
+
+.product-details .product-details-body {
+    height: 90%;
+}
+.product-details p {
+    margin-bottom: 0;
+
+}
+.product-details .productCategory , .product-details .description {
+    font-size: 12px;
+    color: rgb(110, 116, 121);
+}
+
+.product-details a {
+    margin-bottom: 0;
+}
+
+.input-checked:checked .search-box {
+    display: none;
+}
+
+
+
+
+
+
+
+/* ---------------------Start add product----------------------- */
+/* Styling for the overlay that darkens the screen */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background with 50% opacity */
+    display: none; /* Initially hidden */
+    z-index: 9998; /* Behind the modal window */
+}
+
+.container-Add-Product{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #d4d4d494;
+    padding: 20px;
+    width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.container-Add-Product .add-category{
+    top: 9px;
+    right: -22px;
+    font-size: 20px;
+}
+
+.add-Category-Window {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #d4d4d4;
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    z-index: 9999;
+}
+
+ /* Make the table responsive and prevent overflow */
+ .add-Category-Window .table {
+    max-width: 100%;
+    overflow-x: auto;
+    margin-bottom: 15px;
+}
+/* ----------------------End add product -------------------------*/
+
+
+/* ----------------------Start Show Client -------------------------*/
+
+.container-show-client{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f8f9fa;
+    padding: 20px;
+    width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.container-show-client div input {
+    padding-left: 35px;
+}
+
+.container-show-client div i:not(:last-child) {
+    position: absolute;
+    top: 10px;
+    font-size: 15px;
+    color: green;
+    margin-left: 10px;
+}
+
+.container-show-client div i:last-child {
+   
+    font-size: 25px;
+}
+
+.container-show-client div a {
+    margin: 0 !important;
+    font-size: 25px;
+}
+
+
+/* ----------------------End Show Client -------------------------*/

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title%}Clients Page{%endblock%}
+
+{% block content%}
+    
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th class="text-center" scope="col">Conformation</th>
+        <th scope="col">Registration</th>
+        <th scope="col">Last seen</th>
+        <th class="text-center" scope="col">Status</th>
+        <th class="text-center" scope="col">Display</th>
+        <th class="text-center" scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for client in clients %}
+        <tr>
+            <th scope="row">{{client.id}}</th>
+            <td>{{client.name}}</td>
+            <td>{{client.email}}</td>
+
+            <td class="text-center">
+                {% if client.confirmation == 1 %}
+                    <i class="fa-solid fa-lock text-success"
+                    data-bs-toggle="tooltip" data-bs-placement="top" title="It was confirmed"></i>
+                    {% else %}
+                    <i class="fa-solid fa-lock-open text-danger"
+                    data-bs-toggle="tooltip" data-bs-placement="top" title="The Email was not confirmed yet"></i>
+                {% endif %} 
+            </td>
+
+            <td>{{client.registration}}</td>
+            <td>{{client.last_seen}}</td>
+
+            <td class="text-center">
+                {% if client.status == 1 %}
+                    <i class="fa-solid fa-shield-halved text-success"></i>
+                {% else %}
+                    <i class="fa-solid fa-circle-exclamation text-warning"></i>
+                {% endif %} 
+            </td>
+            
+
+            <!-- Show Profile Client -->
+            <td class="text-center">
+                <a href="{{ url_for('show_client', client_id=client.id) }}">
+                    <i class="fa-solid fa-id-badge text-success"></i>
+                </a>
+            </td>
+            <!-- delete Client -->
+            <td class="text-center">
+                <a href="{{ url_for('delete_client', client_id=client.id) }}">
+                    <i class="fa-solid fa-trash-can text-danger"></i>
+                </a>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table> 
+
+{% if clients|length == 0 %}
+<div class="loading-container">
+    <span class="loading-title">working on it, Please one moment</span>
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden"></span>
+    </div>
+</div>
+{% endif %}
+
+{%endblock%}

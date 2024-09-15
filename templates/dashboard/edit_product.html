@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title%}Edit Product{%endblock%}
+
+{% block content%}
+<h2 class="text-center py-2">Product ID : {{product.id}}</h2>
+<div class="container-Edit-Product">
+    <form method="POST" enctype="multipart/form-data">
+        <!-- Product Name -->
+        <div class="mb-3">
+            <input name="name" type="text" class="form-control" value="{{product.name}}" placeholder="Name of Product">
+        </div>
+        
+        <!-- Category -->
+        <div class="mb-3 position-relative">
+            <select name="category" class="form-select">
+                <option>Select the Category</option>
+                {% for category in categories %}
+                    <option value="{{ category.name_category }}" 
+                        {% if category.name_category == product.category %} selected {% endif %}>
+                        {{ category.name_category }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <!-- Description -->
+        <div class="mb-3">
+            <textarea name="description" class="form-control" rows="3" placeholder="Write some details">
+                {{ product.description }}
+            </textarea>
+        </div>
+        
+        <!-- Price -->
+        <div class="mb-3">
+            <input name="price" type="text" class="form-control" value="{{ product.price }}" placeholder="Price of Product">
+        </div>
+        
+        <!-- Photo Upload -->
+        <!-- <div class="mb-3">
+            <input type="file" name="photo" class="form-control">
+            <span class="text-secondary">Allowed extensions ('png', 'jpg', 'jpeg', 'gif')</span>
+        </div> -->
+        
+        <!-- Photo Display and Upload -->
+        <div class="mb-3">
+            {% if product.photo %}
+                <!-- Display the existing photo -->
+                <div class="mb-3">
+                    <img src="{{ url_for('static', filename='uploads/' ~ product.photo) }}" alt="Product Image" class="img-thumbnail" style="max-width: 200px;">
+                    <p>Image path: {{ url_for('static', filename='uploads/' ~ product.photo) }}</p> <!-- Debugging path -->
+                </div>
+            {% endif %}
+            
+            <!-- Photo Upload -->
+            <input type="file" name="photo" class="form-control">
+            <span class="text-secondary">Allowed extensions ('png', 'jpg', 'jpeg', 'gif')</span>
+        </div>
+
+
+
+
+        <!-- Submit Button -->
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a class="btn btn-danger" href="{{ url_for('products_display') }}">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{%endblock%}

@@ -1,0 +1,59 @@
+
+
+{% extends "base.html" %}
+
+{% block title%}Show Client Profile{%endblock%}
+
+{% block content%}
+    <div class="container-show-client">
+        <h5 class="text-center mb-3">Client-ID : 
+            <strong class="text-primary">{{client.id}}</strong>
+        </h5>
+       
+            <!-- client Name -->
+            <div class="mb-3 position-relative">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" class="form-control" value="{{client.name}}" disabled>
+            </div>
+            
+            <!-- Email -->
+            <div class="mb-3 position-relative">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" class="form-control" value="{{client.email}}" disabled>
+            </div>
+            
+            <!-- Confirmation -->
+            <div class="mb-3 position-relative">
+                <i class="fa-solid fa-lock"></i>
+                <input type="text" class="form-control" value="{{client.confirmation}}" disabled>
+            </div>
+            
+            <!-- Registration -->
+            <div class="mb-3 position-relative">
+                <i class="fa-regular fa-calendar"></i>
+                <input type="text" class="form-control" value="{{client.registration}}" disabled>
+            </div>
+            
+            
+            <!-- Last Seen -->
+            <div class="mb-3 position-relative">
+                <i class="fa-solid fa-clock"></i>
+                <input type="text" class="form-control" value="{{client.last_seen}}" disabled>
+            </div>
+            
+            <!-- Status -->
+            <div class="mb-3 position-relative">
+                <i class="fa-solid fa-shield-halved"></i>
+                <input type="text" class="form-control" value="{{client.status}}" disabled>
+            </div>
+            
+            <div class="d-flex align-items-center justify-content-center ">
+                <a href="{{ url_for('clients_display') }}">
+                   <i class="fa-regular fa-circle-right text-primary"></i>
+                </a>
+            </div>
+            
+    </div>
+{%endblock%}
+
+

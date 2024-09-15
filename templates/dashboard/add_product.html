@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title%}Add New Product{%endblock%}
+
+{% block content%}
+<div class="container-Add-Product">
+    <form method="POST" enctype="multipart/form-data" style="padding-right: 5px;">
+        <!-- Product Name -->
+        <div class="mb-3">
+            <input name="name" type="text" class="form-control" placeholder="Name of Product">
+        </div>
+        
+        <!-- Category -->
+        <div class="mb-3 position-relative">
+            <select name="category" class="form-select">
+                <option selected>Select the Category</option>
+                {% for category in categories %}
+                    <option value="{{category.name_category}}">{{category.name_category}}</option>
+                {% endfor %}
+            </select>
+            <i class="fa-solid fa-circle-plus position-absolute text-success add-category"
+                data-bs-toggle="tooltip" data-bs-placement="top" title="Add New Category"></i>
+       </div>
+       
+        <!-- Description -->
+        <div class="mb-3">
+            <textarea name="description" class="form-control" rows="3" placeholder="Write some details"></textarea>
+        </div>
+        
+        <!-- Price -->
+        <div class="mb-3">
+            <input name="price" type="text" class="form-control" placeholder="Price of Product">
+        </div>
+        
+        <!-- Photo Upload -->
+        <div class="mb-3">
+            <input type="file" name="photo" class="form-control">
+            <span class="text-secondary">Allowed extensions ('png', 'jpg', 'jpeg', 'gif')</span>
+        </div>
+        
+        <!-- Submit Button -->
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a class="btn btn-danger" href="{{ url_for('index') }}">Cancel</a>
+        </div>
+    </form>
+</div>
+
+
+
+<!-- Overlay for darkening the screen -->
+<div class="modal-overlay" id="modalOverlay"></div>
+
+<div class="add-Category-Window">
+    <form method="POST" action="{{ url_for('add_category') }}">
+        <div class="mb-3">
+          <input name="category" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter new Category">
+        </div>
+
+        <div class="mb-3 d-flex align-items-center justify-content-around">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <span class="btn btn-danger close-Add-Category-Window">Cancel</span>
+        </div>
+       <div class="mb-3">
+        <table class="table table-striped table-responsive">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Category Name</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for category in categories|sort(attribute='name_category') %}
+                <tr>
+                    <td>{{category.id}}</td>
+                    <td>{{category.name_category}}</td>
+                    <td class="text-center">
+                        <a href="{{ url_for('delete_category', category_id=category.id) }}">
+                            <i class="fa-solid fa-trash-can text-danger"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+       </div>
+      </form>
+      
+</div>
+
+{%endblock%}
